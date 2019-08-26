@@ -30,24 +30,28 @@ class TodoList extends React.Component {
                     <Tab.Pane>
                         <Input autoFocus="autofocus" placeholder='Make Todo' onChange={this.updateInput}
                                value={this.state.input}/>
-                        <Button color='blue' onClick={() => this.handleAddTodo()}>Add
-                            Todo</Button>
+                        <Button inverted color='blue' onClick={() => this.handleAddTodo()}>
+                            AddTodo
+                        </Button>
                     </Tab.Pane>
             },
             {
                 menuItem: 'Todo-List',
                 render: () =>
                     this.props.todoList.map((todo) =>
+                        todo !== -1 &&
                         <Tab.Pane>
                             <div>
-
                                 <p>{todo.todo}</p>
                                 <Button inverted color='green' onClick={() => {
                                     this.props.completeList(todo);
+                                    this.props.deleteTodo(todo);
                                 }}>
                                     Complete
                                 </Button>
-                                
+                                <Button inverted color='red' onClick={() => {
+                                    this.props.deleteTodo(todo)
+                                }}>Delete</Button>
                             </div>
                         </Tab.Pane>
                     )

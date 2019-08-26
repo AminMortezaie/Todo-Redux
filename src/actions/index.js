@@ -1,4 +1,4 @@
-let nextTodoId = 0;
+let nextTodoId = -1;
 
 export const addTodo = (todo) => {
     return {
@@ -14,8 +14,7 @@ export const completeList = (todo) => {
         type: 'complete_list',
         payload: {
             id: todo.id,
-            todo: todo.todo,
-            isComplete: true
+            todo: todo.todo
         }
     }
 };

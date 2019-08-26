@@ -1,30 +1,36 @@
 export default (state = [], action) => {
     switch (action.type) {
         case 'add-todo':
-            console.log("action:");
-            console.log(action);
-            console.log("action.id:" + action.id);
-
             return [
                 ...state,
-                Object.assign({}, {id: action.payload.id, todo: action.payload.todo, isComplete: false})
+                Object.assign({}, {id: action.payload.id, todo: action.payload.todo})
             ];
         case 'remove-todo':
-            return state.filter((data, i) => i !== action.id);
+            console.log(action);
+            return removeObject(state, action.id);
         default:
             return state;
     }
 
 }
 
-//
-// {
-//     id: 0,
-//         todo: "make some tea",
-//     isComplete:false
-// },
-// {
-//     id: 1,
-//         todo: "do homework",
-//     isComplete: false
-// }
+
+const removeObject = (array, id) => {
+    console.log(array);
+    let newState=[];
+    array.map(todo => {
+            if (todo.id !== id) {
+                newState.push(todo);
+                console.log("Im in if");
+                console.log(newState);
+            }
+            else if(todo.id === id){
+                newState.push(-1);
+                console.log("Im in else if");
+                console.log(newState);
+            }
+        }
+    );
+    return newState;
+};
+
